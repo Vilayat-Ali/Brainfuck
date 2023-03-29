@@ -5,6 +5,7 @@ use std::{
     fs::{read, File},
     io::Read,
     path::PathBuf,
+    time::Instant,
 };
 
 const MAX_BUFFER_SIZE: usize = 10;
@@ -17,6 +18,7 @@ pub fn execute_program(file_path: &String) {
     match File::open(PathBuf::from(file_path)) {
         Ok(mut source) => {
             let mut buffer: [u8; MAX_BUFFER_SIZE] = [0; MAX_BUFFER_SIZE];
+            let mut interpreter_starting_time: Instant = Instant::now();
             match source.read(&mut buffer) {
                 Ok(status) => {
                     // parsing tokens
@@ -64,6 +66,10 @@ pub fn execute_program(file_path: &String) {
                             _ => {}
                         }
                     }
+                    println!(
+                        "\nFinished: Compiled in {}ms",
+                        interpreter_starting_time.elapsed().as_millis()
+                    );
                 }
                 Err(e) => panic!("{}", e),
             }

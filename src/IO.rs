@@ -1,13 +1,10 @@
 #![allow(unused)]
 
-use std::io::{stdin, stdout, Error, ErrorKind, Read, StdoutLock, Write};
+use std::io::{prelude::Write, stdin, stdout, Error, ErrorKind, Read, Result, StdoutLock};
 
-pub fn print_to_std_out(payload: &[u8]) {
-    if (payload[0] as char) != ' ' {
-        print!("{}", payload[0] as char);
-    } else {
-        print!("{}", payload[0]);
-    }
+pub fn print_to_std_out(payload: &[u8]) -> Result<()> {
+    stdout().lock().write(payload)?;
+    Ok(())
 }
 
 pub fn write_to_std_in() -> std::io::Result<(u8)> {
