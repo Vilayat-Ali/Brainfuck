@@ -7,7 +7,7 @@ use std::{
     path::PathBuf,
 };
 
-const MAX_BUFFER_SIZE: usize = 50000;
+const MAX_BUFFER_SIZE: usize = 10;
 
 pub fn execute_program(file_path: &String) {
     // memory array
@@ -52,7 +52,7 @@ pub fn execute_program(file_path: &String) {
                             }
                             // Period Token
                             46 => {
-                                print_to_std_out(&[memory_block[pointer]]).unwrap();
+                                print_to_std_out(&[memory_block[pointer]]);
                             }
                             // Comma Token
                             44 => {
@@ -67,6 +67,7 @@ pub fn execute_program(file_path: &String) {
                 }
                 Err(e) => panic!("{}", e),
             }
+            println!("{:?}", buffer);
         }
         Err(e) => panic!("{}", e),
     };
