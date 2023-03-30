@@ -10,4 +10,4 @@ Cargo.lock
 **/*.rs.bk
 
 # test brainfuck source files
-*.bf
+/*.bf

@@ -79,7 +79,6 @@ pub fn execute_program(file_path: &String) {
                             // Period Token
                             46 => {
                                 print_to_std_out(&[memory_block[pointer]]);
-                                print!("Print{}", memory_block[pointer]);
                             }
                             // Comma Token
                             44 => {
@@ -92,7 +91,7 @@ pub fn execute_program(file_path: &String) {
                         }
                     }
                     println!(
-                        "\nFinished: Compiled in {}ms",
+                        "\n\nFinished: Compiled in {}ms",
                         interpreter_starting_time.elapsed().as_millis()
                     );
                 }
