@@ -1,1 +1,8 @@
-# Brainfuck-interpreter
+# Brainfuck
+
+## Inspiration
+
+## Usage
+
+## FAQs
+

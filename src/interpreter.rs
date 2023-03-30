@@ -26,13 +26,20 @@ pub fn execute_program(file_path: &String) {
                         match token {
                             // Plus Token
                             43 => {
-                                memory_block[pointer] += 1;
+                                if memory_block[pointer] == u8::MAX {
+                                    println!(
+                                        "MemoryError: Integer Overflow at memory index {}",
+                                        pointer
+                                    );
+                                } else {
+                                    memory_block[pointer] += 1;
+                                }
                             }
                             // Minus Token
                             45 => {
                                 memory_block[pointer] -= 1;
                             }
-                            // Left Square Bracket Token
+                            // Left Square Bracket Token (Encountered loop)
                             91 => {
                                 // loop body starts
                                 loop_control.0 = true;
@@ -55,6 +62,7 @@ pub fn execute_program(file_path: &String) {
                             // Period Token
                             46 => {
                                 print_to_std_out(&[memory_block[pointer]]);
+                                print!("Print{}", memory_block[pointer]);
                             }
                             // Comma Token
                             44 => {
@@ -71,10 +79,11 @@ pub fn execute_program(file_path: &String) {
                         interpreter_starting_time.elapsed().as_millis()
                     );
                 }
-                Err(e) => panic!("{}", e),
+                Err(e) => {
+                    println!("FileError: {}", e);
+                }
             }
-            println!("{:?}", buffer);
         }
-        Err(e) => panic!("{}", e),
+        Err(e) => println!("FileError: {}", e),
     };
 }
