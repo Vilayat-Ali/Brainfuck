@@ -37,7 +37,14 @@ pub fn execute_program(file_path: &String) {
                             }
                             // Minus Token
                             45 => {
-                                memory_block[pointer] -= 1;
+                                if memory_block[pointer] == u8::MIN {
+                                    println!(
+                                        "MemoryError: Integer Underflow at memory index {}",
+                                        pointer
+                                    );
+                                } else {
+                                    memory_block[pointer] -= 1;
+                                }
                             }
                             // Left Square Bracket Token (Encountered loop)
                             91 => {
@@ -53,11 +60,21 @@ pub fn execute_program(file_path: &String) {
                             }
                             // Left Angle Bracket Token
                             60 => {
-                                pointer -= 1;
+                                if pointer == 0 {
+                                    println!(
+                                        "PointerError: Pointer can never have negative values"
+                                    );
+                                } else {
+                                    pointer -= 1;
+                                }
                             }
                             // Right Angle Bracket Token
                             62 => {
-                                pointer += 1;
+                                if pointer == 30000 {
+                                    println!("PointerError: Max limit of memory block reached");
+                                } else {
+                                    pointer += 1;
+                                }
                             }
                             // Period Token
                             46 => {
