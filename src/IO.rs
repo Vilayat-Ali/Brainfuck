@@ -11,6 +11,5 @@ pub fn write_to_std_in() -> Result<(u8)> {
     // read only 1 byte of data
     let mut buffer: [u8; 1] = [0; 1]; // value, mode
     stdin().lock().read(&mut buffer)?;
-    print_to_std_out(&[10]);
     Ok(buffer[0])
 }

@@ -103,7 +103,7 @@ pub fn execute_program(file_path: &String) {
                         println!("BrackMatchError: Loop brackets are not properly closed");
                     }
                     println!(
-                        "\n\nFinished: Compiled in {}ms",
+                        "\nFinished: Compiled in {}ms",
                         interpreter_starting_time.elapsed().as_millis()
                     );
                 }
