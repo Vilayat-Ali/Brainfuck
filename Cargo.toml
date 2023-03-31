@@ -1,9 +1,17 @@
 [package]
 name = "brainfuck"
+description = "A Brainfuck interpreter build with Rust and lots of love"
 version = "0.1.0"
 authors = ["Syed Vilayat Ali Rizvi <vilayatcodemysite@gmail.com>"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.release]
+opt-level = 'z'     # Optimize for size
+lto = true          # Enable link-time optimization
+codegen-units = 1   # Reduce number of codegen units to increase optimizations
+panic = 'abort'     # Abort on panic
+strip = true        # Strip symbols from binary*
 
 [dependencies]
