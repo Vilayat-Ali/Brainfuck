@@ -14,7 +14,9 @@ pub fn execute_program(file_path: &String) {
     // memory array
     let mut memory_block: [u8; 30000] = [0; 30000];
     let mut pointer: usize = 0;
-    let mut loop_control: (bool, u8) = (false, 0); // loop control variables
+    let mut loop_control: (bool, usize) = (false, 0); // loop control variables
+    let mut bracket_stack: Vec<u32> = Vec::with_capacity(10000); // using stack for bracket matching
+
     match File::open(PathBuf::from(file_path)) {
         Ok(mut source) => {
             let mut buffer: [u8; MAX_BUFFER_SIZE] = [0; MAX_BUFFER_SIZE];
@@ -31,6 +33,7 @@ pub fn execute_program(file_path: &String) {
                                         "MemoryError: Integer Overflow at memory index {}",
                                         pointer
                                     );
+                                    break;
                                 } else {
                                     memory_block[pointer] += 1;
                                 }
@@ -42,21 +45,19 @@ pub fn execute_program(file_path: &String) {
                                         "MemoryError: Integer Underflow at memory index {}",
                                         pointer
                                     );
+                                    break;
                                 } else {
                                     memory_block[pointer] -= 1;
                                 }
                             }
-                            // Left Square Bracket Token (Encountered loop)
+                            // handling loops
                             91 => {
-                                // loop body starts
-                                loop_control.0 = true;
-                                loop_control.1 = memory_block[pointer];
+                                // opening square brackets
+                                bracket_stack.push(1);
                             }
-                            // Right Square Bracket Token
                             93 => {
-                                // loop body ends
-                                loop_control.0 = false;
-                                loop_control.1 = memory_block[pointer];
+                                // closing square brackets
+                                bracket_stack.pop();
                             }
                             // Left Angle Bracket Token
                             60 => {
@@ -64,6 +65,7 @@ pub fn execute_program(file_path: &String) {
                                     println!(
                                         "PointerError: Pointer can never have negative values"
                                     );
+                                    break;
                                 } else {
                                     pointer -= 1;
                                 }
@@ -72,23 +74,33 @@ pub fn execute_program(file_path: &String) {
                             62 => {
                                 if pointer == 30000 {
                                     println!("PointerError: Max limit of memory block reached");
+                                    break;
                                 } else {
                                     pointer += 1;
                                 }
                             }
                             // Period Token
                             46 => {
-                                print_to_std_out(&[memory_block[pointer]]);
+                                if let Err(e) = print_to_std_out(&[memory_block[pointer]]) {
+                                    println!("IOError: {}", e);
+                                    break;
+                                };
                             }
                             // Comma Token
-                            44 => {
-                                if let Ok(input_val) = write_to_std_in() {
+                            44 => match write_to_std_in() {
+                                Ok(input_val) => {
                                     memory_block[pointer] = input_val;
                                 }
-                            }
+                                Err(e) => {
+                                    println!("IOError: {}", e);
+                                }
+                            },
                             // Unrecognised characters are left as comments
                             _ => {}
                         }
+                    }
+                    if bracket_stack.len() != 0 {
+                        println!("BrackMatchError: Loop brackets are not properly closed");
                     }
                     println!(
                         "\n\nFinished: Compiled in {}ms",
