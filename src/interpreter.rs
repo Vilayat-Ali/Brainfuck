@@ -9,13 +9,13 @@ use std::{
 };
 
 const MAX_BUFFER_SIZE: usize = 30000;
+static mut COUNT: usize = 0;
 
 pub fn execute_program(file_path: &String) {
     // memory array
     let mut memory_block: [u8; 30000] = [0; 30000];
     let mut pointer: usize = 0;
     let mut loop_control: (bool, usize) = (false, 0); // loop control variables
-    let mut bracket_stack: Vec<u32> = Vec::with_capacity(10000); // using stack for bracket matching
 
     match File::open(PathBuf::from(file_path)) {
         Ok(mut source) => {
@@ -24,8 +24,9 @@ pub fn execute_program(file_path: &String) {
             match source.read(&mut buffer) {
                 Ok(status) => {
                     // parsing tokens
-                    for token in buffer.into_iter() {
-                        match token {
+                    let mut bracket_vec: Vec<usize> = Vec::with_capacity(1000);
+                    for mut token in 0..buffer.len() {
+                        match buffer[token] {
                             // Plus Token
                             43 => {
                                 if memory_block[pointer] == u8::MAX {
@@ -53,11 +54,20 @@ pub fn execute_program(file_path: &String) {
                             // handling loops
                             91 => {
                                 // opening square brackets
-                                bracket_stack.push(1);
+                                if !bracket_vec.contains(&token) {
+                                    unsafe {
+                                        println!("Loop ran for {} time", COUNT + 1);
+                                    }
+                                    bracket_vec.push(token);
+                                }
                             }
                             93 => {
                                 // closing square brackets
-                                bracket_stack.pop();
+                                if memory_block[pointer] != 0 {
+                                    token = *bracket_vec.last().unwrap();
+                                } else {
+                                    bracket_vec.retain(|&x| x != token);
+                                }
                             }
                             // Left Angle Bracket Token
                             60 => {
@@ -99,8 +109,11 @@ pub fn execute_program(file_path: &String) {
                             _ => {}
                         }
                     }
-                    if bracket_stack.len() != 0 {
-                        println!("BrackMatchError: Loop brackets are not properly closed");
+                    if bracket_vec.len() != 0 {
+                        println!(
+                            "BrackMatchError: Loop brackets are not properly closed {:?}",
+                            bracket_vec
+                        );
                     }
                     println!(
                         "\nFinished: Compiled in {}ms",
