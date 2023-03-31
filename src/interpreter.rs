@@ -8,7 +8,7 @@ use std::{
     time::Instant,
 };
 
-const MAX_BUFFER_SIZE: usize = 10;
+const MAX_BUFFER_SIZE: usize = 30000;
 
 pub fn execute_program(file_path: &String) {
     // memory array

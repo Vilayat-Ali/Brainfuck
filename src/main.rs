@@ -33,7 +33,7 @@ fn main() {
                 }
             }
             _ => {
-                println!("Hello from _")
+                println!("CommandError: Invalid command '{}'.\nTip: Run command 'vbf run <path to source file>' to execute a brainfuck", &args_vec[0].as_str());
             }
         }
     }
