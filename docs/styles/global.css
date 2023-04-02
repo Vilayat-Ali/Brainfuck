@@ -6,3 +6,35 @@
 body {
     font-family: 'Merriweather', serif;
 }
+
+/* If the screen size is 1200px wide or more, set the font-size to 80px */
+  @media (min-width: 1200px) {
+
+    .name-of-project {
+      font-size: 80px;
+    }
+
+    .name-of-project-badge {
+        font-size: 25px;
+    }
+
+    .image-to-be-displayed {
+        width: 20vw;
+    }
+  }
+
+  /* If the screen size is smaller than 1200px, set the font-size to 80px */
+  @media (max-width: 1199.98px) {
+
+    .name-of-project {
+      font-size: 40px;
+    }
+
+    .name-of-project-badge {
+        font-size: 10px;
+    }
+
+    .image-to-be-displayed {
+        width: 100vw;
+    }
+  }
