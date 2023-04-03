@@ -116,6 +116,3 @@ And save it as `helloworld.bf`
 Now, run the program by running,
 
 `./brainfuck run <path/to/brainfuck_source_file>` or in this case `./brainfuck run ./helloworld.bf`
-
-## FAQs
-

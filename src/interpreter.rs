@@ -23,6 +23,7 @@ pub fn execute_program(file_path: &String) {
             let mut interpreter_starting_time: Instant = Instant::now();
             match source.read(&mut buffer) {
                 Ok(status) => {
+                    let mut loop_stack: Vec<usize> = Vec::with_capacity(1000); // supports upto 1000 loop stacks without need of reallocation on the heap
                     for mut token in 0..buffer.len() {
                         match buffer[token] {
                             // Plus Token
@@ -108,4 +109,18 @@ pub fn execute_program(file_path: &String) {
         }
         Err(e) => println!("FileError: {}", e),
     };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn memory_pointer_movements() {}
+
+    #[test]
+    fn memory_block_working() {}
+
+    #[test]
+    fn testing_loop_functionality() {}
 }
