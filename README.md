@@ -63,6 +63,59 @@ There are also several online Brainfuck interpreters available, as well as plugi
 In conclusion, while Brainfuck may not be the most practical language for most programming tasks, it has maintained a small but dedicated following of programmers who find it to be a fun and interesting way to learn about programming concepts. As new interpreters and compilers are developed, it's likely that we'll see Brainfuck continue to be used for creative and challenging programming projects.
 
 ## Usage
+### Method 1: Cloning and building the repo
+Clone the repo by running the following command in your terminal:
+
+`git clone -b main https://github.com/Vilayat-Ali/Brainfuck.git vilayat-brainfuck`
+
+Now cd into the newly generated folder by running
+
+`cd vilayat-brainfuck`
+
+Compiler the code by running the following command in the root of the new folder:
+
+`cargo build --release`
+
+Go to `target/release` folder and extract the executable file named 'brainfuck'
+
+Write a new brainfuck program into a new file:
+
+Sample for hello world - 
+
+```
+>++++++++[<+++++++++>-]<.>++++[<+++++++>-]<+.+++++++..+++.>>++++++[<+++++++>-]<+
++.------------.>++++++[<+++++++++>-]<+.<.+++.------.--------.>>>++++[<++++++++>-
+]<+.
+```
+
+And save it as `helloworld.bf`
+
+Now, run the program by running,
+
+`./brainfuck run <path/to/brainfuck_source_file>` or in this case `./brainfuck run ./helloworld.bf`
+
+
+### Method 2: Downloading executable from the website
+
+Go to vilayat-brainfuck website's [download page](https://vilayat-ali.github.io/vilayat-ali/Brainfuck/download.html).
+
+Choose the suitable executable and download it.
+
+Write a new brainfuck program into a new file:
+
+Sample for hello world - 
+
+```
+>++++++++[<+++++++++>-]<.>++++[<+++++++>-]<+.+++++++..+++.>>++++++[<+++++++>-]<+
++.------------.>++++++[<+++++++++>-]<+.<.+++.------.--------.>>>++++[<++++++++>-
+]<+.
+```
+
+And save it as `helloworld.bf`
+
+Now, run the program by running,
+
+`./brainfuck run <path/to/brainfuck_source_file>` or in this case `./brainfuck run ./helloworld.bf`
 
 ## FAQs
 

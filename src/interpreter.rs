@@ -23,7 +23,6 @@ pub fn execute_program(file_path: &String) {
             let mut interpreter_starting_time: Instant = Instant::now();
             match source.read(&mut buffer) {
                 Ok(status) => {
-                    // parsing tokens
                     for mut token in 0..buffer.len() {
                         match buffer[token] {
                             // Plus Token
