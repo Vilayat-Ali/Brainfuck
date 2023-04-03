@@ -24,7 +24,6 @@ pub fn execute_program(file_path: &String) {
             match source.read(&mut buffer) {
                 Ok(status) => {
                     // parsing tokens
-                    let mut bracket_vec: Vec<usize> = Vec::with_capacity(1000);
                     for mut token in 0..buffer.len() {
                         match buffer[token] {
                             // Plus Token
@@ -54,20 +53,9 @@ pub fn execute_program(file_path: &String) {
                             // handling loops
                             91 => {
                                 // opening square brackets
-                                if !bracket_vec.contains(&token) {
-                                    unsafe {
-                                        println!("Loop ran for {} time", COUNT + 1);
-                                    }
-                                    bracket_vec.push(token);
-                                }
                             }
                             93 => {
                                 // closing square brackets
-                                if memory_block[pointer] != 0 {
-                                    token = *bracket_vec.last().unwrap();
-                                } else {
-                                    bracket_vec.retain(|&x| x != token);
-                                }
                             }
                             // Left Angle Bracket Token
                             60 => {
@@ -108,12 +96,6 @@ pub fn execute_program(file_path: &String) {
                             // Unrecognised characters are left as comments
                             _ => {}
                         }
-                    }
-                    if bracket_vec.len() != 0 {
-                        println!(
-                            "BrackMatchError: Loop brackets are not properly closed {:?}",
-                            bracket_vec
-                        );
                     }
                     println!(
                         "\nFinished: Compiled in {}ms",
