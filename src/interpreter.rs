@@ -24,8 +24,9 @@ pub fn execute_program(file_path: &String) {
             match source.read(&mut buffer) {
                 Ok(status) => {
                     let mut loop_stack: Vec<(usize, usize)> = Vec::with_capacity(1000); // supports upto 1000 loop stacks without need of reallocation on the heap
-                    for mut token in 0..buffer.len() {
-                        match buffer[token] {
+                    let mut program_pointer: usize = 0;
+                    while program_pointer < status {
+                        match buffer[program_pointer] {
                             // Plus Token
                             43 => {
                                 if memory_block[pointer] == u8::MAX {
@@ -53,16 +54,18 @@ pub fn execute_program(file_path: &String) {
                             // handling loops
                             91 => {
                                 // opening square brackets
-                                loop_stack.push((token, 0));
+                                if memory_block[pointer] != 0 {
+                                    program_pointer = 0;
+                                } else {
+                                    program_pointer = 5;
+                                }
                             }
                             93 => {
                                 // closing square brackets
-                                while memory_block[pointer] != 0 {
-                                    pointer = loop_stack.last().unwrap().0;
-                                }
-
-                                if memory_block[pointer] == 0 {
-                                    loop_stack.pop();
+                                if memory_block[pointer] != 0 {
+                                    program_pointer = 0;
+                                } else {
+                                    program_pointer += 1;
                                 }
                             }
                             // Left Angle Bracket Token
@@ -102,8 +105,14 @@ pub fn execute_program(file_path: &String) {
                                 }
                             },
                             // Unrecognised characters are left as comments
-                            _ => {}
+                            _ => {
+                                // println!(
+                                //     "Buffer Index {} | Token {} |",
+                                //     token, buffer[token] as char
+                                // );
+                            }
                         }
+                        program_pointer += 1;
                     }
                     println!(
                         "\nFinished: Compiled in {}ms",
