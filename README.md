@@ -97,7 +97,7 @@ Now, run the program by running,
 
 ### Method 2: Downloading executable from the website
 
-Go to vilayat-brainfuck website's [download page](https://vilayat-ali.github.io/vilayat-ali/Brainfuck/download.html).
+Go to vilayat-brainfuck website's [download page](https://vilayat-ali.github.io/Brainfuck/pages/download.html).
 
 Choose the suitable executable and download it.
 
