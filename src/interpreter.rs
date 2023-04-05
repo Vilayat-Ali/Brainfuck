@@ -111,7 +111,7 @@ pub fn execute_program(file_path: &String) {
                     }
                     println!(
                         "\nFinished: Compiled in {}ms",
-                        interpreter_starting_time.elapsed().as_millis()
+                        interpreter_starting_time.elapsed().as_secs_f64() * 1000000_f64
                     );
                 }
                 Err(e) => {
