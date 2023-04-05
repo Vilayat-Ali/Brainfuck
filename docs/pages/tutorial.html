@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Global css -->
-    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="../styles/global.css" />
 </head>
 <body>
     <!-- Navbar -->
@@ -54,152 +54,58 @@
     </div>
     <!-- Navbar -->
 
-    <!-- Banner -->
-    <!-- <div class="container d-flex flex-row justify-content-center">
-        <img style="width: 70%" class="img img-fluid" src="./assets/img/banner.webp" alt="brain-fuck"/>
-    </div> -->
-    <!-- Banner -->
-
-    <!-- Introduction -->
+    <!-- How to Install Vilayat-Brainfuck -->
     <div class="container d-flex flex-column justify-content-center">
         <div class="container mt-4">
-            <div class="h4">Hello 👋 visitor!</div><br />
+            <div class="h4">Installing Vilayat-Brainfuck Interpreter</div><br />
             <p class="text-justify">
                 Hey there, welcome to my project showcase website! It's great to have you here. I hope you're ready to check out some awesome projects that I've been working on.            Take a look around, explore the different projects and feel free to leave comments or feedback. I'm always open to new ideas and suggestions.
                 If you want to see more of my work, head over to my Github repo at https://www.github.com/vilayat-ali. There you'll find even more projects, code snippets, and experiments that I've been tinkering with.
                 Thanks for stopping by, and I hope you enjoy browsing my projects as much as I enjoyed creating them!<br/><br/>
             </p>
             <br />
-            <div class="h4">What's cooking?</div><br/>
-            <p class="text-justify">
-                Welcome to the showcase docs for my project, which is - an interpreter for the brainfuck programming language implemented using <a href="https://www.rust-lang.org">Rust</a> programming language!<br /><br />
-                Brainfuck is a minimalist programming language that uses a very small set of commands to manipulate a tape of memory cells.<br /><br />
-                It's a challenging language to work with, but it's also a lot of fun! With my interpreter, you can write Brainfuck programs and run them directly in the terminal.<br /><br />
-                The interpreter is implemented in Rust, a fast and efficient systems programming language known for its performance and reliability. Rust's emphasis on memory safety makes it an excellent choice for building low-level systems, such as interpreters and compilers.<br /><br />
-                On this website, you'll find information about the interpreter, including how to install it and use it to run Brainfuck programs. You'll also find the source code for the interpreter on my Github repository at <a href="https://www.github.com/vilayat-ali/Brainfuck">repository link</a>, along with documentation and examples to get you started.<br /><br />
-                I hope you find my interpreter useful and that it inspires you to explore the world of programming languages and systems programming. Thanks for stopping by, and happy coding!
-            </p>
-        </div>
     </div>
-    <!-- Introduction -->
+    <!-- How to Install Vilayat-Brainfuck -->
 
-    <!-- Table of Contents -->
-    <div class="container d-flex flex-column justify-content-start my-5">
-        <div class="h4 text-center my-2">Table of Contents</div><br />
-        <table class="table table-striped border">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">S.No.</th>
-                <th scope="col">Topic</th>
-                <th scope="col">Description</th>
-                <th scope="col">Link</th>
-              </tr>
-            </thead>
-            <tbody>
-            <!-- Row -->
-              <tr>
-                <th scope="row">1</th>
-                <td>Inspiration</td>
-                <td class="text-secondary">Why I built this project in the first place?</td>
-                <td><a href="#why-i-built-this-project">Read Now</a></td>
-              </tr>
-            <!-- Row -->
-            <!-- Row -->
-              <tr>
-                <th scope="row">2</th>
-                <td>What is Brainfuck, Anyway?</td>
-                <td class="text-secondary">A tour to the world's most misunderstood language</td>
-                <td><a href="#what-is-brainfuck-anyway">Read Now</a></td>
-              </tr>
-            <!-- Row -->
-            <!-- Row -->
-            <tr>
-                <th scope="row">3</th>
-                <td>Challenges and blockers!</td>
-                <td class="text-secondary">List of all challenges and blockers that I faced while developing this project</td>
-                <td><a href="#challenges-and-blockers">Read Now</a></td>
-              </tr>
-            <!-- Row -->
-            <!-- Row -->
-              <tr>
-                <th scope="row">4</th>
-                <td>Future Scope</td>
-                <td class="text-secondary">My plans for the future inregards to this project</td>
-                <td><a href="#future-scope">Read Now</a></td>
-              </tr>
-            <!-- Row -->
-            </tbody>
-          </table>
-    </div>
-    <!-- Table of Contents -->
-
-    <!-- Topic: Inspiration -->
-    <div class="conntainer">
-        <div class="h4 text-center my-2" id="why-i-built-this-project">Inspiration</div>
-        <div class="container container-fluid d-flex flex-column justify-content-center">
-            <p class="text-justify">
-                Welcome to my website where I will share with you the story of how I got inspired to create an interpreter for the Brainfuck programming language using the Rust programming language.<br /><br />
-
-                As a computer science student, I've always been interested in programming languages and how they work. When I first came across Brainfuck, I was intrigued by its simplicity and the challenge of working with such a limited set of commands.<br /><br />
-                
-                I was inspired to create an interpreter for Brainfuck in Rust after reading a blog post by <a href="https://alastairreid.github.io/">Alastair Reid</a>, where he explained how he built an interpreter for the same language in Haskell. His post showed me that it was possible to build a powerful interpreter for Brainfuck using functional programming concepts, and I wanted to see how I could apply those same concepts to Rust.<br /><br />
-                
-                I also drew inspiration from the book <a href="https://www.amazon.com/Programming-Rust-Fast-Systems-Development/dp/1492052590">Programming Rust: Fast, Safe Systems Development"</a> by Jim Blandy and Jason Orendorff. The book provided a comprehensive overview of the Rust language and its capabilities, which helped me understand how to build a performant and reliable interpreter.<br /><br />
-                
-                But most importantly, I got inspired by <a href="https://www.youtube.com/@Fireship">Fireship</a>'s youtube video titled, <a href="https://youtu.be/hdHjjBS4cs8">"Brainf**k in 100 Seconds"</a>, where he explains all language features and mechanics that set me off and made me keep going.<br/><br />
-
-                I love videos by Fireship! My man, makes the best programming-related content, that are, apart from being very infomative are fun to watch too. This video is way more favourite to me than his any other video, for the reason that it was the resource that introduced me to the Brainfuck programming language, in the very first place.<br/></p>
-
-                The project was a challenging and rewarding experience, and I'm excited to share it with you on this website<br /><br />
-                
-                I hope my journey inspires you to explore new programming languages and concepts.<br /><br />
-            </p>
-        </div>
-    </div>
-    <!-- Topic: Inspiration -->
-
-    <!-- Topic: What is Brainfuck, Anyway? -->
+    <!-- How to Install Vilayat-Brainfuck -->
     <div class="container d-flex flex-column justify-content-center">
-        <div class="h4 text-center my-2" id="what-is-brainfuck-anyway">What is Brainfuck, Anyway?</div><br/>
-        <p class="text-justify">
-            Brainfuck is a programming language that was invented by Urban Müller in 1993. Despite being one of the most minimalist programming languages ever created, Brainfuck has maintained a small but dedicated following of programmers who find it to be a challenging and rewarding language to work with.<br /><br />
-        </p>
-        
-        <figure class="figure container-fluid my-2 d-flex flex-column justify-content-center">
-            <img src="./assets/img/urban_muller.webp" alt="urban-muller" class="img img-fluid image-to-be-displayed mx-auto">
-            <figure class="figure-caption text-center my-1">Urban Müller, the inventor of Brainfuck programming langauge.</figure>
-        </figure>
-
-        <p class="text-justify">
-            The language is based on a simple idea: the program operates on a tape of memory cells, each of which can store a single byte. The program also has a data pointer that can move along the tape, allowing the program to read and write values to and from memory.
-
-            Brainfuck consists of only eight commands, each represented by a single character. The commands are:
-
-            <ul class="ml-5">
-                <li>'>' increment the data pointer</li>
-                <li>'<' decrement the data pointer</li>
-                <li>'+' increment the value at the data pointer</li>
-                <li>'-' decrement the value at the data pointer</li>
-                <li>'.' output the value at the data pointer as a character</li>
-                <li>',' input a character and store it at the data pointer</li>
-                <li>'[' if the value at the data pointer is zero, jump to the corresponding ']'</li>
-                <li>']' if the value at the data pointer is not zero, jump to the corresponding '['</li>
-            </ul>
-
-            While Brainfuck is undoubtedly one of the most challenging languages to learn and write in, it has maintained a dedicated following of programmers who find it to be a fun and interesting way to learn about programming concepts.<br/><br/>
-
-            Brainfuck was initially created by Müller as a language to challenge programmers to think about programming in a different way. He was inspired by the Turing machine, an abstract machine that can simulate any computer algorithm. In a similar vein, Brainfuck is a Turing-complete language, which means that it can simulate any other computer algorithm.<br/><br/>
-
-            While Brainfuck never gained mainstream popularity, it has maintained a small but dedicated following of programmers who find it to be a fun and interesting way to learn about programming concepts. In recent years, there has been something of a comeback for Brainfuck, with new interpreters and compilers being developed and used for everything from coding challenges to art installations.
-
-            One of the most popular Brainfuck interpreters is written in C by Daniel B. Cristofani, and it is available on his website.<br/><br/>
-            
-            There are also several online Brainfuck interpreters available, as well as plugins for popular code editors like Visual Studio Code.<br/><br/>
-
-            In conclusion, while Brainfuck may not be the most practical language for most programming tasks, it has maintained a small but dedicated following of programmers who find it to be a fun and interesting way to learn about programming concepts. As new interpreters and compilers are developed, it's likely that we'll see Brainfuck continue to be used for creative and challenging programming projects.
-        </p>
+        <div class="container mt-4">
+            <div class="h4">Introduction to programming in Brainfuck</div><br />
+            <p class="text-justify">
+                Hey there, welcome to my project showcase website! It's great to have you here. I hope you're ready to check out some awesome projects that I've been working on.            Take a look around, explore the different projects and feel free to leave comments or feedback. I'm always open to new ideas and suggestions.
+                If you want to see more of my work, head over to my Github repo at https://www.github.com/vilayat-ali. There you'll find even more projects, code snippets, and experiments that I've been tinkering with.
+                Thanks for stopping by, and I hope you enjoy browsing my projects as much as I enjoyed creating them!<br/><br/>
+            </p>
+            <br />
     </div>
-    <!-- Topic: What is Brainfuck, Anyway? -->
+    <!-- How to Install Vilayat-Brainfuck -->
+
+    <!-- I/O Operations in Brainfuck -->
+    <div class="container d-flex flex-column justify-content-center">
+        <div class="container mt-4">
+            <div class="h4">I/O operations in Brainfuck</div><br />
+            <p class="text-justify">
+                Hey there, welcome to my project showcase website! It's great to have you here. I hope you're ready to check out some awesome projects that I've been working on.            Take a look around, explore the different projects and feel free to leave comments or feedback. I'm always open to new ideas and suggestions.
+                If you want to see more of my work, head over to my Github repo at https://www.github.com/vilayat-ali. There you'll find even more projects, code snippets, and experiments that I've been tinkering with.
+                Thanks for stopping by, and I hope you enjoy browsing my projects as much as I enjoyed creating them!<br/><br/>
+            </p>
+            <br />
+    </div>
+    <!-- I/O Operations in Brainfuck -->
+
+    <!-- Loops in Brainfuck -->
+    <div class="container d-flex flex-column justify-content-center">
+        <div class="container mt-4">
+            <div class="h4">Loops in Brainfuck</div><br />
+            <p class="text-justify">
+                Hey there, welcome to my project showcase website! It's great to have you here. I hope you're ready to check out some awesome projects that I've been working on.            Take a look around, explore the different projects and feel free to leave comments or feedback. I'm always open to new ideas and suggestions.
+                If you want to see more of my work, head over to my Github repo at https://www.github.com/vilayat-ali. There you'll find even more projects, code snippets, and experiments that I've been tinkering with.
+                Thanks for stopping by, and I hope you enjoy browsing my projects as much as I enjoyed creating them!<br/><br/>
+            </p>
+            <br />
+    </div>
+    <!-- Loops in Brainfuck -->
+
 
     <!-- Footer -->
     <div class="container d-flex justify-content-center mt-5">
