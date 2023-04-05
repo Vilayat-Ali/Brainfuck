@@ -20,6 +20,7 @@ pub fn execute_program(file_path: &String) {
         Ok(mut source) => {
             let mut buffer: [u8; MAX_BUFFER_SIZE] = [0; MAX_BUFFER_SIZE];
             let mut interpreter_starting_time: Instant = Instant::now();
+            let mut total_execution_time: f64 = 0_f64;
             match source.read(&mut buffer) {
                 Ok(status) => {
                     let mut loop_stack: Vec<usize> = Vec::with_capacity(1000); // supports upto 1000 loop stacks without need of reallocation on the heap
@@ -96,14 +97,21 @@ pub fn execute_program(file_path: &String) {
                                 };
                             }
                             // Comma Token
-                            44 => match write_to_std_in() {
-                                Ok(input_val) => {
-                                    memory_block[pointer] = input_val;
+                            44 => {
+                                total_execution_time +=
+                                    interpreter_starting_time.elapsed().as_secs_f64();
+
+                                match write_to_std_in() {
+                                    Ok(input_val) => {
+                                        memory_block[pointer] = input_val;
+                                        // start measuring time after using have given the input
+                                        interpreter_starting_time = Instant::now();
+                                    }
+                                    Err(e) => {
+                                        println!("IOError: {}", e);
+                                    }
                                 }
-                                Err(e) => {
-                                    println!("IOError: {}", e);
-                                }
-                            },
+                            }
                             // Unrecognised characters are left as comments
                             _ => {}
                         }
@@ -111,7 +119,9 @@ pub fn execute_program(file_path: &String) {
                     }
                     println!(
                         "\nFinished: Compiled in {}ms",
-                        (interpreter_starting_time.elapsed().as_secs_f64() * 1000000_f64).round()
+                        (total_execution_time
+                            + interpreter_starting_time.elapsed().as_secs_f64() * 1000000_f64)
+                            .round()
                     );
                 }
                 Err(e) => {
