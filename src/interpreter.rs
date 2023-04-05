@@ -2,6 +2,7 @@
 
 use crate::IO::{print_to_std_out, write_to_std_in};
 use std::{
+    collections::VecDeque,
     fs::{read, File},
     io::Read,
     path::PathBuf,
@@ -9,13 +10,11 @@ use std::{
 };
 
 const MAX_BUFFER_SIZE: usize = 30000;
-static mut COUNT: usize = 0;
 
 pub fn execute_program(file_path: &String) {
     // memory array
     let mut memory_block: [u8; 30000] = [0; 30000];
     let mut pointer: usize = 0;
-    let mut loop_control: (bool, usize) = (false, 0); // loop control variables
 
     match File::open(PathBuf::from(file_path)) {
         Ok(mut source) => {
@@ -23,7 +22,7 @@ pub fn execute_program(file_path: &String) {
             let mut interpreter_starting_time: Instant = Instant::now();
             match source.read(&mut buffer) {
                 Ok(status) => {
-                    let mut loop_stack: Vec<(usize, usize)> = Vec::with_capacity(1000); // supports upto 1000 loop stacks without need of reallocation on the heap
+                    let mut loop_stack: Vec<usize> = Vec::with_capacity(1000); // supports upto 1000 loop stacks without need of reallocation on the heap
                     let mut program_pointer: usize = 0;
                     while program_pointer < status {
                         match buffer[program_pointer] {
@@ -54,18 +53,19 @@ pub fn execute_program(file_path: &String) {
                             // handling loops
                             91 => {
                                 // opening square brackets
-                                if memory_block[pointer] != 0 {
-                                    program_pointer = 0;
-                                } else {
-                                    program_pointer = 5;
-                                }
+                                loop_stack.push(program_pointer);
                             }
                             93 => {
-                                // closing square brackets
-                                if memory_block[pointer] != 0 {
-                                    program_pointer = 0;
-                                } else {
-                                    program_pointer += 1;
+                                // closing square bracket
+                                match loop_stack.last() {
+                                    Some(val) => {
+                                        if memory_block[pointer] != 0 {
+                                            program_pointer = val.clone();
+                                        }
+                                    }
+                                    None => {
+                                        println!("SyntaxError: Mismatched brackets '[' or ']'");
+                                    }
                                 }
                             }
                             // Left Angle Bracket Token
@@ -105,12 +105,7 @@ pub fn execute_program(file_path: &String) {
                                 }
                             },
                             // Unrecognised characters are left as comments
-                            _ => {
-                                // println!(
-                                //     "Buffer Index {} | Token {} |",
-                                //     token, buffer[token] as char
-                                // );
-                            }
+                            _ => {}
                         }
                         program_pointer += 1;
                     }
