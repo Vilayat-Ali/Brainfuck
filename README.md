@@ -24,7 +24,7 @@ I also drew inspiration from the book Programming Rust: Fast, Safe Systems Devel
 
 But most importantly, I got inspired by Fireship's youtube video titled, "Brainf**k in 100 Seconds", where he explains all language features and mechanics that set me off and made me keep going.
 
-I love videos by Fireship! My man, makes the best programming-related content, that are, apart from being very infomative are fun to watch too. This video is way more favourite to me than his any other video, for the reason that it was the resource that introduced me to the Brainfuck programming language, in the very first place.
+I love videos by Fireship! My man, makes the best programming-related content, that are, apart from being very informative are fun to watch too. This video is way more favourite to me than his any other video, for the reason that it was the resource that introduced me to the Brainfuck programming language, in the very first place.
 
 The project was a challenging and rewarding experience, and I'm excited to share it with you on this website
 
